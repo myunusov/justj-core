@@ -2,7 +2,7 @@ package org.maxur.justj.core.cli
 
 import org.maxur.justj.core.cli.annotation.*
 import org.maxur.justj.core.cli.exception.InvalidCommandArgumentException
-import org.maxur.justj.core.cli.exception.InvalidCommandLineError
+import org.maxur.justj.core.cli.exception.InvalidCommandLineException
 import spock.lang.Specification
 
 /**
@@ -10,7 +10,7 @@ import spock.lang.Specification
  * @version 1.0
  * @since <pre>21.02.2016</pre>
  */
-class CliMenuSpec extends Specification {
+public class CliMenuSpec extends Specification {
 
     private CliMenu sut
 
@@ -44,7 +44,7 @@ class CliMenuSpec extends Specification {
         and: "try get command from menu"
         sut.makeCommand(args)
         then: "Menu throws Invalid Command Line"
-        thrown InvalidCommandLineError;
+        thrown InvalidCommandLineException;
     }
 
     def "Should returns command on valid flag only "() {
@@ -182,7 +182,7 @@ class CliMenuSpec extends Specification {
         and: "try get command from menu"
         sut.makeCommand(args)
         then: "Menu throws Invalid Command Line"
-        thrown InvalidCommandLineError;
+        thrown InvalidCommandLineException;
     }
 
     def "Should returns command if command line contains command and commands option as trigger (compact form)"() {
@@ -324,7 +324,7 @@ class CliMenuSpec extends Specification {
         and: "try get command from menu"
         sut.makeCommand(args)
         then: "Menu throws Invalid List Exception"
-        thrown InvalidCommandLineError;
+        thrown InvalidCommandLineException;
     }
 
     def "Should returns command if command line contains options with id of default command"() {
@@ -348,11 +348,6 @@ class CliMenuSpec extends Specification {
         then: "Menu returns default command by command line flag"
         assert command instanceof ProcessCommand;
         assert command.phases == ["clean", "install", "site"];
-    }
-
-    @Command
-    static abstract class TestCommand  {
-        boolean quiet
     }
 
     @Command("version")

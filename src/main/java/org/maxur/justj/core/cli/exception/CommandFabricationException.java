@@ -7,6 +7,8 @@ package org.maxur.justj.core.cli.exception;
  */
 public abstract class CommandFabricationException extends Exception {
 
+    private static final long serialVersionUID = 7325242975454875414L;
+
     public CommandFabricationException(final String message) {
         super(message);
     }

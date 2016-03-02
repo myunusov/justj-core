@@ -2,7 +2,7 @@ package org.maxur.justj.core.cli;
 
 import org.maxur.justj.core.cli.argument.Argument;
 import org.maxur.justj.core.cli.exception.CommandFabricationException;
-import org.maxur.justj.core.cli.exception.InvalidCommandLineError;
+import org.maxur.justj.core.cli.exception.InvalidCommandLineException;
 import org.maxur.justj.core.cli.info.CliCommandInfo;
 import org.maxur.justj.core.cli.info.CliItemInfo;
 import org.maxur.justj.core.cli.info.CliOptionInfo;
@@ -107,8 +107,8 @@ public class CliMenu implements OptionDetector {
 
 
 
-    private InvalidCommandLineError moreThanOneCommandException(String[] args, Collection<CliCommandInfo> commands) {
-        return new InvalidCommandLineError(
+    private InvalidCommandLineException moreThanOneCommandException(String[] args, Collection<CliCommandInfo> commands) {
+        return new InvalidCommandLineException(
                 Arrays.toString(args),
                 format("You try to call commands %s simultaneously", getCommandsAsString(commands))
         );

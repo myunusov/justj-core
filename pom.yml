@@ -7,98 +7,11 @@ name: 'Just(J)ava Core Library'
 
 parent: {
         groupId: org.maxur,
-        artifactId: maxur-base,
-        version: 0.16-SNAPSHOT
+        artifactId: justj-base,
+        version: 0.1-SNAPSHOT
 }
 
 dependencies:
-# DbC
-  - { groupId: org.jetbrains, artifactId: annotations }
 # Utils
   - { groupId: org.reflections, artifactId: reflections, version: 0.9.10 }
-# Doc
-  - { groupId: com.athaydes, artifactId: spock-reports, version: 1.2.9, scope: test }
-
-build:
-  plugins:
-    - artifactId: maven-compiler-plugin
-      version: ${maven-compiler-plugin.version}
-      configuration:
-        source: ${project.source.compile}
-        target: ${project.target.compile}
-        encoding: ${project.source.encoding}
-        optimize: true
-        showWarnings: true
-        showDeprecation: true
-        testExcludes:
-          excludes: [ "**/package-info.java" ]
-        compilerArgs:
-          args: [ "-Xlint", "-Xlint:-path", "-Xlint:-options", "-Xlint:-classfile", "-Xlint:-processing" ]
-
-    - groupId: org.eluder.coveralls
-      artifactId: coveralls-maven-plugin
-      version: 4.0.0
-      configuration:
-        repoToken: ${env.coveralls_repo_token}
-        jacocoReports:
-          jacocoReports: [
-             "${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml",
-             "${project.reporting.outputDirectory}/jacoco-it/jacoco.xml"
-          ]
-
-    - artifactId: maven-javadoc-plugin
-      configuration:
-        doclet: ch.raffael.doclets.pegdown.PegdownDoclet
-        docletArtifact:
-            groupId: ch.raffael.pegdown-doclet
-            artifactId: pegdown-doclet
-            version: 1.2.1
-        useStandardDocletOptions: true
-
-
-reporting:
-  plugins:
-    - artifactId: maven-javadoc-plugin
-      version: ${maven-javadoc-plugin.version}
-      configuration:
-        doclet: ch.raffael.doclets.pegdown.PegdownDoclet
-        docletArtifact:
-            groupId: ch.raffael.pegdown-doclet
-            artifactId: pegdown-doclet
-            version: 1.2.1
-        useStandardDocletOptions: true
-        failOnError: true
-        detectLinks: true
-
-        source: ${project.source.compile}
-        encoding: ${project.source.encoding}
-        charset: ${project.source.encoding}
-        docencoding: ${project.source.encoding}
-        breakiterator: true
-        version: true
-        author: true
-        keywords: true
-        linksource: true
-        excludePackageNames: "*.it,*.test"
-        additionalparams: [
-                        '-inferrel -inferdep -quiet -hide java.*',
-                        '-collpackages java.util.* -qualify',
-                        '-postfixpackage -nodefontsize 9',
-                        '-nodefontpackagesize 7',
-                        '-edgefontname "Trebuchet MS"',
-                        '-nodefontabstractname "Trebuchet MS"',
-                        '-nodefontclassabstractname "Trebuchet MS"',
-                        '-nodefontclassname "Trebuchet MS"',
-                        '-nodefontname "Trebuchet MS"',
-                        '-nodefontpackagename "Trebuchet MS"',
-                        '-nodefonttagname "Trebuchet MS"',
-                        '-view'
-        ]
-        tags:
-            - name: todo
-              placement: a
-              head: "To do:"
-            - name: checkstyle
-              placement: a
-              head: "Suppressed Checkstyle violations::"
 

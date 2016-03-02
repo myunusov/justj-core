@@ -13,7 +13,7 @@ import org.maxur.justj.core.cli.annotation.Key;
 @Key(value = "?")
 @Key(value = "h")
 @Command
-public class HelpCommand extends CliMenuSpec.TestCommand {
+public class HelpCommand extends TestCommand {
     @Flag("all")
     boolean all;
 }

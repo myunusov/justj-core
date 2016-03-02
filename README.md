@@ -6,7 +6,6 @@
 
 ## Overview
 
-
 ## Links  
 
 * [GitHub Project](https://github.com/myunusov/justj-core)

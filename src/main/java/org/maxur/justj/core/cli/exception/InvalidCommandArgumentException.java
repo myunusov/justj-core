@@ -11,6 +11,8 @@ public class InvalidCommandArgumentException extends CommandFabricationException
 
     private static final String MESSAGE = "Command line '%s' is not recognized by the command '%s': %s";
 
+    private static final long serialVersionUID = -7074601215271552061L;
+
     public InvalidCommandArgumentException(final String commandName, final String arguments, final String message) {
         super(format(MESSAGE, arguments, commandName, message));
     }

@@ -11,6 +11,8 @@ public class CommandInstancingException extends CommandFabricationException {
 
     private static final String MESSAGE = "Command '%s' cannot be instanced: %s";
 
+    private static final long serialVersionUID = 9092984068295398649L;
+
     public CommandInstancingException(final String commandName, final String message, final Exception cause) {
         super(format(MESSAGE, commandName, message), cause);
     }

@@ -1,7 +1,7 @@
 package org.maxur.justj.core.cli.strategy;
 
 import org.maxur.justj.core.cli.argument.Argument;
-import org.maxur.justj.core.cli.exception.InvalidCommandLineError;
+import org.maxur.justj.core.cli.exception.InvalidCommandLineException;
 
 import java.util.Arrays;
 
@@ -48,7 +48,7 @@ public class ArgumentCursor {
         return pos < expression.length();
     }
 
-    public Argument next() throws InvalidCommandLineError {
+    public Argument next() throws InvalidCommandLineException {
         final Argument result;
         switch (state) {
             case INIT:
@@ -67,7 +67,7 @@ public class ArgumentCursor {
         return result;
     }
 
-    private Argument argument() throws InvalidCommandLineError {
+    private Argument argument() throws InvalidCommandLineException {
         if (startWith(NAME_PREFIX)) {
             skip(NAME_PREFIX);
             return new Argument(readName());
@@ -81,7 +81,7 @@ public class ArgumentCursor {
         }
     }
 
-    private void populate(final Argument argument) throws InvalidCommandLineError {
+    private void populate(final Argument argument) throws InvalidCommandLineException {
         if (!detector.findOptionBy(argument).isEmpty()) {
             argument.setOptionArgument(optionArgument());
         } else if (!detector.findListBy(argument).isEmpty()) {
@@ -89,12 +89,12 @@ public class ArgumentCursor {
         }
     }
 
-    private String listArgument() throws InvalidCommandLineError {
+    private String listArgument() throws InvalidCommandLineException {
         skipSpace();
         return readList();
     }
 
-    private String optionArgument() throws InvalidCommandLineError {
+    private String optionArgument() throws InvalidCommandLineException {
         skipSpace();
         if (startWith(TEXT_SYMBOL)) {
             return readText();
@@ -113,12 +113,12 @@ public class ArgumentCursor {
         return expression.startsWith(s, pos);
     }
 
-    private void skip(final String s) throws InvalidCommandLineError {
+    private void skip(final String s) throws InvalidCommandLineException {
         skipSpace();
         if (startWith(s)) {
             pos += s.length();
         } else {
-            throw new InvalidCommandLineError(format(
+            throw new InvalidCommandLineException(format(
                     "Invalid expression '%s'. Must be '%s' in '%d' position"
                     , expression, s, pos
             )
@@ -152,11 +152,11 @@ public class ArgumentCursor {
         return null;
     }
 
-    private String readList() throws InvalidCommandLineError {
+    private String readList() throws InvalidCommandLineException {
         String list = "";
         do {
             if (!hasNext()) {
-                throw new InvalidCommandLineError(format("List '%s' is not closed", list));
+                throw new InvalidCommandLineException(format("List '%s' is not closed", list));
             }
             list += readWord();
         } while(list.endsWith(LIST_SEPARATOR) || startWith(LIST_SEPARATOR));
@@ -180,13 +180,13 @@ public class ArgumentCursor {
         return operand;
     }
 
-    private String readText() throws InvalidCommandLineError {
+    private String readText() throws InvalidCommandLineException {
         skip(TEXT_SYMBOL);
         String text = "";
         while (!expression.startsWith(TEXT_SYMBOL, pos)) {
             text += Character.toString(expression.charAt(pos++));
             if (!hasNext()) {
-                throw new InvalidCommandLineError(format(
+                throw new InvalidCommandLineException(format(
                         "Invalid expression '%s'. Must be '%s' in '%d' position"
                         , expression, "\"", pos
                 ));

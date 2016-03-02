@@ -1,5 +1,4 @@
-*.iml
-
+/build
 logs
 sonar.properties
 node_modules
@@ -14,3 +13,5 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
+/mvnw.bat
+/mvnw

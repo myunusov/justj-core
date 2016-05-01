@@ -1,8 +1,8 @@
-# Just(J)ava Core Library"
+# Just(J)ava Core Library
 
-[![Build Status](https://travis-ci.org/myunusov/tutor-ddd.svg?branch=master)](https://travis-ci.org/myunusov/justj-core)
+[![Build Status](https://travis-ci.org/myunusov/justj-core.svg)](https://travis-ci.org/myunusov/justj-core)
 
-[![Coverage Status](https://coveralls.io/repos/myunusov/justj-core/badge.svg?branch=master&service=github)](https://coveralls.io/github/myunusov/justj-core?branch=master)
+[![Coverage Status](https://coveralls.io/repos/myunusov/justj-core/badge.svg)](https://coveralls.io/github/myunusov/justj-core)
 
 ## Overview
 
